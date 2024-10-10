@@ -1,5 +1,4 @@
 <?php
-
 header("Access-Control-Allow-Origin: *"); // 모든 출처 허용
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS"); // 허용할 HTTP 메서드
 header("Access-Control-Allow-Headers: Content-Type"); // 허용할 헤더
@@ -7,58 +6,50 @@ header("Access-Control-Allow-Headers: Content-Type"); // 허용할 헤더
 // 데이터베이스 정보 설정
 $servername = "localhost"; // 서버명
 $username = "root"; // XAMPP의 기본 사용자 이름
-$password = "1111"; // 비밀번호
+$password = "1111"; // 비밀번호 (기본적으로 비어 있음)
 $dbname = "seoul2024"; // 사용할 데이터베이스 이름
 
-// 데이터베이스 연결
-$conn = new mysqli($servername, $username, $password, $dbname);
+$db = null; // $db 변수를 초기화
 
-// 연결 확인
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    // PDO를 이용한 데이터베이스 연결
+    $db = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // 오류 예외 설정
+} catch (PDOException $e) {
+    // 연결 오류 처리
+    echo "Connection failed: " . $e->getMessage();
+    exit();
 }
 
-// 공원 및 화장실 정보를 데이터베이스에서 가져오기 위한 SQL 쿼리
-$sql = "
+// SQL 쿼리 작성
+$query = "
     SELECT 
-        p.NAME as park_name, 
-        t.CODE as toilet_code, 
+        p.NAME AS park_name, 
+        m.CODE AS machine_code, 
+        CASE 
+            WHEN SUBSTRING(m.CODE, 3, 1) = '2' THEN '여자화장실' 
+            WHEN SUBSTRING(m.CODE, 3, 1) = '1' THEN '남자화장실' 
+            ELSE '정보 없음' 
+        END AS gender, 
         m.STATE_NUM, 
-        s.STATE_CONTENT,
-        m.MACHINE_NUM
-    FROM park p
-    LEFT JOIN toilet t ON p.TOILET_NUM = t.CODE
-    LEFT JOIN machine m ON t.MACHINE_NUM = m.CODE
-    LEFT JOIN state s ON m.STATE_NUM = s.STATE_CODE
+        s.STATE_CONTENT 
+    FROM machine m 
+    LEFT JOIN toilet t ON m.CODE = t.MACHINE_NUM 
+    LEFT JOIN park p ON t.CODE = p.TOILET_NUM 
+    LEFT JOIN state s ON m.STATE_NUM = s.STATE_CODE;
 ";
 
-$result = $conn->query($sql);
-
-// 쿼리 실패 시 에러 확인
-if (!$result) {
-    die("Query failed: " . $conn->error); // 에러 메시지를 출력하고 스크립트 중단
+// 쿼리 실행 및 결과 가져오기
+try {
+    $result = $db->query($query);
+    $data = $result->fetchAll(PDO::FETCH_ASSOC); // 연관 배열로 가져오기
+} catch (PDOException $e) {
+    // 쿼리 실행 오류 처리
+    echo "Query failed: " . $e->getMessage();
+    exit();
 }
 
-$toiletInfo = array(); // 화장실 정보를 저장할 배열
-
-if ($result->num_rows > 0) {
-    // 각 화장실 정보를 배열에 추가
-    while ($row = $result->fetch_assoc()) {
-        // 기기 코드의 세 번째 자리를 통해 성별을 구분
-        $gender = substr($row['MACHINE_NUM'], 2, 1) == '2' ? '여자화장실' : '남자화장실';
-
-        $toiletInfo[] = array(
-            'park_name' => $row['park_name'],
-            'toilet_code' => $row['toilet_code'],
-            'gender' => $gender,
-            'state_num' => $row['STATE_NUM'],
-            'state_content' => $row['STATE_CONTENT']
-        );
-    }
-}
-
-// JSON 형식으로 변환하여 출력
-echo json_encode($toiletInfo);
-
-$conn->close();
+// JSON 형식으로 결과 반환
+header('Content-Type: application/json'); // JSON 응답 헤더 설정
+echo json_encode($data); // 데이터를 JSON 형식으로 출력
 ?>

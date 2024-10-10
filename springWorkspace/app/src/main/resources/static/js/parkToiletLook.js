@@ -28,8 +28,9 @@ function displayTissueData(data) {
         const tissueItem = document.createElement('div');
         tissueItem.className = 'tissue-item';
         tissueItem.innerHTML = `
-          <h2 class="restroom-code">화장실 코드: ${item.toilet_code}</h2>
-          <p class="gender">${item.gender}</p> <!-- 성별 표시 추가 -->
+          <h2 class="restroom-code">기기 코드: ${item.machine_code}</h2> <!-- 기기 코드로 수정 -->
+          <p class="park-name">공원이름: ${item.park_name}</p>
+          <p class="gender">성별: ${item.gender}</p>
           <p class="tissue-status">휴지 잔여 상태: ${item.state_content}</p>
       `;
         tissueList.appendChild(tissueItem); // 리스트에 추가
@@ -44,8 +45,9 @@ function filterTissueStatus() {
 
     for (let i = 0; i < tissues.length; i++) {
         const code = tissues[i].getElementsByClassName('restroom-code')[0].innerText.toLowerCase();
+        const park = tissues[i].getElementsByClassName('park-name')[0].innerText.toLowerCase();
         const gender = tissues[i].getElementsByClassName('gender')[0].innerText.toLowerCase();
-        if (code.includes(filter) || gender.includes(filter)) {
+        if (code.includes(filter) || park.includes(filter) || gender.includes(filter)) {
             tissues[i].style.display = "";
         } else {
             tissues[i].style.display = "none";
