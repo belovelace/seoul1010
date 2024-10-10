@@ -40,7 +40,7 @@ JOIN
 JOIN 
     state s ON s.state_code = m.STATE_NUM  -- state 테이블 조인
 WHERE 
-    p.CODE = '1';
+    p.CODE = '2';
 ";
 
 // 쿼리 실행

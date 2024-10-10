@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // AJAX 요청을 통해 화장실 상태 가져오기
 function fetchTissueStatus() {
-    fetch('http://localhost/php/park/parkId1.php') // 데이터 가져올 PHP 파일
+    fetch('http://localhost/php/park/parkId5.php') // 데이터 가져올 PHP 파일
         .then(response => {
             if (!response.ok) { // 응답이 정상인지 확인
                 throw new Error('Network response was not ok ' + response.statusText);
@@ -25,7 +25,7 @@ function fetchTissueStatus() {
                     <div class="tissue-details">
                         <h3>기계 코드: ${item.Machine_Code}</h3>
                         <p>성별: ${item.Gender}</p>
-                        <p>상태 번호: ${item.State_Num}</p>
+                        <p>상태 : ${item.State_Content}</p>
                     </div>
                 `;
                 tissueList.appendChild(tissueItem); // 생성한 요소를 리스트에 추가

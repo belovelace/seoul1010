@@ -45,15 +45,23 @@ function showMap(latitude, longitude) {
                 return;
             }
 
-            // positions 배열을 PHP 데이터로 변환
-            var positions = data.map(park => ({
-                content: '<div class="customoverlay">' +
-                    '  <a href="parkId.php?id=' + park.code + '" target="_blank">' + // CODE를 쿼리 파라미터로 추가
-                    '    <span class="title">' + park.name + '</span>' +
-                    '  </a>' +
-                    '</div>',
-                latlng: new kakao.maps.LatLng(park.latitude, park.longitude)
-            }));
+// positions 배열을 PHP 데이터로 변환
+            
+            var positions = data.map(park => {
+                let parkId = park.code; // park.code를 parkId로 사용
+                let href = 'http://127.0.0.1:8787/parkId' + parkId; // URL을 parkId에 맞게 설정
+
+                return {
+                    content: '<div class="customoverlay">' +
+                        '  <a href="' + href + '" target="_blank">' + // parkId에 따라 링크 설정
+                        '    <span class="title">' + park.name + '</span>' +
+                        '  </a>' +
+                        '</div>',
+                    latlng: new kakao.maps.LatLng(park.latitude, park.longitude)
+                };
+            });
+
+
 
 
             // 마커와 커스텀 오버레이 생성

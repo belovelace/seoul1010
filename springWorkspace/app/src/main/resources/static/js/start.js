@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
      // 2.5초 후에 페이지 이동 실행
     setTimeout(function() {
-    location.href = 'Http://127.0.0.1:8787/home';
+    location.href = 'Http://127.0.0.1:8787/user';
     }, 1500); // 2500ms = 2.5초
 
       } else {

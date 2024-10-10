@@ -14,5 +14,10 @@ public class searchCodeController {
         return "searchCode"; // home 디렉토리 내의 home 뷰를 반환
     }
 
+    // 맵 경로에 매핑되는 메서드
+    @GetMapping("/list")
+    public String list(){
+        return "parkList"; // home 디렉토리 내의 home 뷰를 반환
+    }
 
 }

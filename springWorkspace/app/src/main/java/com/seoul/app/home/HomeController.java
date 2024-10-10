@@ -13,4 +13,9 @@ public class HomeController {
     public String home(){
         return "home"; // home 디렉토리 내의 home 뷰를 반환
     }
+
+    @GetMapping("/user")
+    public String user(){
+        return "user"; // home 디렉토리 내의 home 뷰를 반환
+    }
 }
