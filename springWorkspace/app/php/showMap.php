@@ -1,5 +1,8 @@
 <?php
 
+header("Access-Control-Allow-Origin: *"); // 모든 출처 허용
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS"); // 허용할 HTTP 메서드
+header("Access-Control-Allow-Headers: Content-Type"); // 허용할 헤더
 
 // 데이터베이스 정보 설정
 $servername = "localhost"; // 서버명
