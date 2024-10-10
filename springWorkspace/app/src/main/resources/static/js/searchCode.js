@@ -1,32 +1,28 @@
-// searchCode.js
-
 // 데이터 가져오기 함수
 function fetchTissueData(machineCode = '') {
-    // 기기 코드가 있을 경우 쿼리 파라미터 추가
     const url = machineCode
-        ? `http://localhost/php/parkToiletLook.php?machine_code=${encodeURIComponent(machineCode)}`
-        : 'http://localhost/php/parkToiletLook.php';
+        ? `http://localhost/php/searchCode.php?machine_code=${encodeURIComponent(machineCode)}`
+        : 'http://localhost/php/searchCode.php'; // URL 수정: php 경로 일관성 유지
 
     console.log(`Fetching data from: ${url}`); // 디버깅용 로그
 
-    // 로딩 메시지 표시
     const tissueList = document.getElementById('tissueList');
     tissueList.innerHTML = '<p>로딩 중...</p>';
 
-    fetch(url) // PHP 파일의 경로
+    fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json(); // JSON 데이터로 변환
+            return response.json();
         })
         .then(data => {
-            console.log('Received data:', data); // 디버깅용 로그
+            console.log('Received data:', data);
             if (data.error) {
                 console.error('Server Error:', data.error);
                 displayError(data.error);
             } else {
-                displayTissueData(data); // 데이터 표시
+                displayTissueData(data);
             }
         })
         .catch(error => {
