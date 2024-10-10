@@ -23,26 +23,14 @@ try {
 
 
 // SQL 쿼리 작성
-$query = "
-    SELECT 
-        m.CODE AS machine_code, 
-        CASE 
-            WHEN SUBSTRING(m.CODE, 3, 1) = '2' THEN '여자화장실' 
-            WHEN SUBSTRING(m.CODE, 3, 1) = '1' THEN '남자화장실' 
-            ELSE '정보 없음' 
-        END AS gender, 
-        m.STATE_NUM, 
-        s.STATE_CONTENT 
-    FROM machine m 
-    LEFT JOIN toilet t ON m.CODE = t.MACHINE_NUM 
-    LEFT JOIN state s ON m.STATE_NUM = s.STATE_CODE;
-";
+$sql = "SELECT * FROM park WHERE name LIKE '%상암근린공원%'"; // 상암근린공원 포함된 공원 조회
+
 
 
 
 // 쿼리 실행 및 결과 가져오기
 try {
-    $result = $db->query($query);
+    $result = $db->query($sql);
     $data = $result->fetchAll(PDO::FETCH_ASSOC); // 연관 배열로 가져오기
 } catch (PDOException $e) {
     // 쿼리 실행 오류 처리
