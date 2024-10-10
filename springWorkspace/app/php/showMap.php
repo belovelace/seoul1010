@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 }
 
 // 공원 정보를 데이터베이스에서 가져오기 위한 SQL 쿼리
-$sql = "SELECT NAME, LATITUDE, LONGITUDE FROM park";
+$sql = "SELECT CODE, NAME, LATITUDE, LONGITUDE FROM park";
 $result = $conn->query($sql);
 
 // 쿼리 실패 시 에러 확인
@@ -34,6 +34,7 @@ if ($result->num_rows > 0) {
     // 각 공원 정보를 배열에 추가
     while ($row = $result->fetch_assoc()) {
         $parks[] = array(
+            'code' => $row['CODE'],
             'name' => $row['NAME'],
             'latitude' => $row['LATITUDE'],
             'longitude' => $row['LONGITUDE']
