@@ -21,10 +21,10 @@ try {
     exit();
 }
 
+
 // SQL 쿼리 작성
 $query = "
     SELECT 
-        p.NAME AS park_name, 
         m.CODE AS machine_code, 
         CASE 
             WHEN SUBSTRING(m.CODE, 3, 1) = '2' THEN '여자화장실' 
@@ -35,9 +35,10 @@ $query = "
         s.STATE_CONTENT 
     FROM machine m 
     LEFT JOIN toilet t ON m.CODE = t.MACHINE_NUM 
-    LEFT JOIN park p ON t.CODE = p.TOILET_NUM 
     LEFT JOIN state s ON m.STATE_NUM = s.STATE_CODE;
 ";
+
+
 
 // 쿼리 실행 및 결과 가져오기
 try {
