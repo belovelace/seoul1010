@@ -1,3 +1,17 @@
+.grandiflora-one-regular {
+    font-family: "Grandiflora One", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.gowun-dodum-regular {
+    font-family: "Gowun Dodum", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
 
 .header {
     background: linear-gradient(120deg, #b09668, #54cc88, #fff677);
@@ -16,6 +30,7 @@ header {
     display: block;
     unicode-bidi: isolate;
 }
+
 body, html {
     margin: 0;
     padding: 0;
