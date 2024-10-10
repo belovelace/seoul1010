@@ -20,7 +20,7 @@
 
 <div class="menu">
     <button id="viewAllParks">모든 공원 조회</button>
-    <button id="viewTrashStatus">휴지 상태로 조회</button>
+    <button id="viewTrashStatus">휴지 코드로 조회</button>
     <button id="viewGoHome">시작화면으로 이동</button>
 </div>
 
@@ -29,5 +29,6 @@
 </div>
 
 <%@include file="util/footer.jsp"%>
+<script src="/js/home.js"></script>
 </body>
 </html>
