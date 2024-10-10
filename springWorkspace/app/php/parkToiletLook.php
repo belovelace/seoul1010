@@ -18,15 +18,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// 공원 및 화장실 정보를 데이터베이스에서 가져오기 위한 SQL 쿼리$sql = "
+// 공원 및 화장실 정보를 데이터베이스에서 가져오기 위한 SQL 쿼리
 $sql = "
-    SELECT p.NAME as park_name, t.CODE as toilet_code, m.STATE_NUM, s.STATE_CONTENT
+    SELECT 
+        p.NAME as park_name, 
+        t.CODE as toilet_code, 
+        m.STATE_NUM, 
+        s.STATE_CONTENT,
+        m.MACHINE_NUM
     FROM park p
     LEFT JOIN toilet t ON p.TOILET_NUM = t.CODE
     LEFT JOIN machine m ON t.MACHINE_NUM = m.CODE
     LEFT JOIN state s ON m.STATE_NUM = s.STATE_CODE
 ";
-
 
 $result = $conn->query($sql);
 
@@ -40,9 +44,13 @@ $toiletInfo = array(); // 화장실 정보를 저장할 배열
 if ($result->num_rows > 0) {
     // 각 화장실 정보를 배열에 추가
     while ($row = $result->fetch_assoc()) {
+        // 기기 코드의 세 번째 자리를 통해 성별을 구분
+        $gender = substr($row['MACHINE_NUM'], 2, 1) == '2' ? '여자화장실' : '남자화장실';
+
         $toiletInfo[] = array(
             'park_name' => $row['park_name'],
             'toilet_code' => $row['toilet_code'],
+            'gender' => $gender,
             'state_num' => $row['STATE_NUM'],
             'state_content' => $row['STATE_CONTENT']
         );
