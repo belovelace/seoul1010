@@ -27,28 +27,25 @@ if ($id === null) {
 }
 
 // SQL 쿼리 작성
-$sql = "
- 
-";
+$sql = "SELECT CODE, NAME, LATITUDE, LONGITUDE, TOILET_NUM FROM park WHERE CODE = ?";
 
 // 준비된 문 사용
 $stmt = $conn->prepare($sql); // SQL 문 준비
-$searchCode = $id . '%'; // 공원 ID에 기반한 코드 검색 (공원 ID + 와일드카드)
-$stmt->bind_param("s", $searchCode); // 바인딩 (문자열로)
+$stmt->bind_param("i", $id); // ID가 정수형이라 가정하고 바인딩
+
 
 $stmt->execute(); // 쿼리 실행
 $result = $stmt->get_result(); // 결과 가져오기
 
+// 결과 확인
 if ($result->num_rows > 0) {
-    $toilets = [];
-    while ($toilet = $result->fetch_assoc()) { // 각 화장실 정보를 배열에 저장
-        $toilets[] = $toilet;
-    }
-    echo json_encode($toilets); // JSON 형태로 화장실 정보 출력
+    $parkDetail = $result->fetch_assoc(); // 공원 정보를 배열로 가져옴
+    echo json_encode($parkDetail); // JSON 형식으로 출력
 } else {
-    echo json_encode(["error" => "해당 화장실을 찾을 수 없습니다."]); // 오류 메시지 출력
+    echo json_encode(["error" => "해당 공원을 찾을 수 없습니다."]); // 공원이 없을 경우 메시지 출력
 }
 
-$stmt->close(); // 쿼리문 종료
-$conn->close(); // 데이터베이스 연결 종료
+// 연결 종료
+$stmt->close();
+$conn->close();
 ?>

@@ -45,15 +45,17 @@ function showMap(latitude, longitude) {
                 return;
             }
 
-    // positions 배열을 PHP 데이터로 변환
+            // positions 배열을 PHP 데이터로 변환
             var positions = data.map(park => ({
                 content: '<div class="customoverlay">' +
-                    '  <a href="parkDetail.php?id=' + park.code + '" target="_blank">' + // CODE를 쿼리 파라미터로 추가
+                    '  <a href="http://localhost/php/parkDetail.php?id=' + park.code + '" target="_blank">' + // CODE를 쿼리 파라미터로 추가
                     '    <span class="title">' + park.name + '</span>' +
                     '  </a>' +
                     '</div>',
                 latlng: new kakao.maps.LatLng(park.latitude, park.longitude)
             }));
+
+
 
 
             // 마커와 커스텀 오버레이 생성
