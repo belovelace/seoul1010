@@ -11,9 +11,8 @@
 <body>
 
 <!-- 헤더 섹션 -->
-<header>
-    <h1>휴지 상태 확인</h1>
-</header>
+<%@include file="util/header.jsp"%>
+
 
 <main>
     <section class="search-section">
@@ -26,6 +25,7 @@
     </section>
 </main>
 
+<%@include file="util/footer.jsp"%>
 <script src="/js/searchCode.js"></script> <!-- JavaScript 파일 경로 -->
 </body>
 </html>

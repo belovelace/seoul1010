@@ -23,27 +23,30 @@ header {
 
 /* 검색 섹션 스타일 */
 .search-section {
+    display: flex; /* 플렉스 박스 설정 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
     padding: 20px;
-    text-align: center;
     background-color: #fff;
 }
 
 #searchInput {
-    width: 80%;
+    width: 70%;
     max-width: 500px;
     padding: 10px;
     border: 2px solid #b09668;
     border-radius: 5px;
     font-size: 16px;
+    margin-right: 10px; /* 버튼과의 간격을 위해 추가 */
 }
 
 button {
-    padding: 10px 20px;
+    padding: 3px 3px;
     border: none;
     background-color: #b09668;
     color: white;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: smaller;
     cursor: pointer;
 }
 
