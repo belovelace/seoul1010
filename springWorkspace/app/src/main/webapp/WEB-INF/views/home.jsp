@@ -19,8 +19,8 @@
 <%@include file="util/header.jsp"%>
 
 <div class="menu">
-    <button id="viewAllParks">모든 공원 조회</button>
-    <button id="viewTrashStatus">휴지 코드로 조회</button>
+    <button id="viewAllParks">'없음'상태 조회</button>
+    <button id="viewTrashStatus">기기코드로 조회</button>
     <button id="viewGoHome">시작화면으로 이동</button>
 </div>
 
@@ -30,5 +30,6 @@
 
 <%@include file="util/footer.jsp"%>
 <script src="/js/home.js"></script>
+<script src="/js/user.js"></script>
 </body>
 </html>

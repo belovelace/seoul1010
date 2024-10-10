@@ -28,6 +28,6 @@
 </div>
 
 <%@include file="util/footer.jsp"%>
-<script src="/js/home.js"></script>
+<script src="/js/user.js"></script>
 </body>
 </html>

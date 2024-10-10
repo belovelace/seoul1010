@@ -53,7 +53,7 @@ function showMap(latitude, longitude) {
 
                 return {
                     content: '<div class="customoverlay">' +
-                        '  <a href="' + href + '" target="_blank">' + // parkId에 따라 링크 설정
+                        '  <a href="' + href + '" >' + // parkId에 따라 링크 설정
                         '    <span class="title">' + park.name + '</span>' +
                         '  </a>' +
                         '</div>',
