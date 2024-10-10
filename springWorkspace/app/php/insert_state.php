@@ -18,7 +18,7 @@ if(isset($_GET["state"]) && isset($_GET["code"])){
    }
 
  //  $sql = "INSERT INTO machin (CODE, STATE_NUM) VALUES ($code,$state) ON //DUPLICATE KEY UPDATE  STATE_NUM = $state ";
-   $sql = "UPDATE machin SET STATE_NUM='$state' WHERE CODE='$code'";
+   $sql = "UPDATE machine SET STATE_NUM='$state' WHERE CODE='$code'";
  // $sql = "UPDATE machin SET STATE_NUM = :state WHERE CODE = :code";
 
    if ($conn->query($sql) === TRUE) {
