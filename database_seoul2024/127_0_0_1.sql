@@ -222,6 +222,13 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `PHONE_NUM` (`PHONE_NUM`);
 
 --
+-- 테이블의 인덱스 `state`
+--
+ALTER TABLE `state`
+  ADD PRIMARY KEY (`STATE_CODE`),
+  ADD UNIQUE KEY `STATE_NUM_UNIQUE` (`STATE_CODE`);
+
+--
 -- 테이블의 인덱스 `machine`
 --
 ALTER TABLE `machine`
@@ -237,12 +244,7 @@ ALTER TABLE `park`
   ADD UNIQUE KEY `CODE` (`CODE`),
   ADD KEY `TOILET_NUM_FK` (`TOILET_NUM`);
 
---
--- 테이블의 인덱스 `state`
---
-ALTER TABLE `state`
-  ADD PRIMARY KEY (`STATE_CODE`),
-  ADD UNIQUE KEY `STATE_NUM_UNIQUE` (`STATE_CODE`);
+
 
 --
 -- 테이블의 인덱스 `toilet`

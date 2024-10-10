@@ -10,31 +10,20 @@
     font-style: normal;
 }
 
-
-
-
 .header {
     background: linear-gradient(120deg, #b09668, #54cc88, #fff677);
     color: white;
     text-align: center;
-    padding: 15px 15px;
+    padding: 15px 15px; /* 상단 바의 패딩 */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-header {
-    display: block;
-    unicode-bidi: isolate;
-}
-
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Noto Sans', sans-serif;
+/* 상단 타이틀 스타일 */
+.header h1 {
+    color: white;
+    text-align: center;
+    margin: 3px;
+    font-family: "Grandiflora One", cursive;
+    font-weight: bolder;
+    font-size: large;
 }
