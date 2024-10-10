@@ -1,0 +1,25 @@
+
+.header {
+    background: linear-gradient(120deg, #b09668, #54cc88, #fff677);
+    color: white;
+    text-align: center;
+    padding: 15px 15px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: block;
+    unicode-bidi: isolate;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Noto Sans', sans-serif;
+}

@@ -1,0 +1,70 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Noto Sans', sans-serif; /* Google Fonts 적용 */
+}
+
+.grandiflora-one-regular {
+  font-family: "Grandiflora One", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.gowun-dodum-regular {
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 푸터 스타일 */
+footer {
+  background-color: #54cc88;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+
+
+.map-container {
+  flex: 1; /* 남은 공간을 모두 차지 */
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+  grid-column: 1fr, 1fr;
+}
+
+
+.menu button {
+  background-color: #b09668;
+  color: white;
+  border: none;
+  font-family: "Grandiflora One", cursive;
+  font-size: smaller;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+
+  margin: 5px;
+}
+
+.menu button:hover {
+  background-color: #54cc88;
+}
+
+.menu button:active {
+  background-color: #54cc88;
+}
+
+.menu button:focus {
+  outline: none;
+}
