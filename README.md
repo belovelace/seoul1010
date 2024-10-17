@@ -4,7 +4,7 @@
 
 ---
 
-## 팀 구성: **잘풀리는 팀** 🎉  
+## 팀 구성: **잘풀리는 팀** 🧻 
 - **박철민** (조장) – 하드웨어 | [asdflkjh@naver.com](mailto:asdflkjh@naver.com)  
 - **신은지** – 소프트웨어 | [eunji7480@gachon.ac.kr](mailto:eunji7480@gachon.ac.kr)  
 - **홍근재** – 하드웨어 | [qazxsw215@naver.com](mailto:qazxsw215@naver.com)  
